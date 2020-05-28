@@ -107,6 +107,7 @@
   <ItemGroup>
     <Compile Include="App_Start\ConfigAutofac.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CryptographController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

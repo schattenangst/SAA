@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApiAuthorizationAA.Common.IPersistence
 {
-    public interface IBasePersistence <T> where T : class
+    public interface IBasePersistence<T> where T : class
     {
         /// <summary>
         /// Encuentra todos los elementos de un conjunto
@@ -71,10 +71,10 @@ namespace ApiAuthorizationAA.Common.IPersistence
         /// <summary>
         /// Obtiene la cantidad de restros que cumplen con un filtro
         /// </summary>
-        /// <param name="filtro"></param>
-        /// <param name="propiedadesNavegacion"></param>
+        /// <param name="filter"></param>
+        /// <param name="navigationProperties"></param>
         /// <returns></returns>
-        Task<int> Count(Expression<Func<T, bool>> filtro, params Expression<Func<T, object>>[] propiedadesNavegacion);
+        Task<int> CountAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] navigationProperties);
 
         /// <summary>
         /// Inseerta varios registros en base de datos a partir de una entidad

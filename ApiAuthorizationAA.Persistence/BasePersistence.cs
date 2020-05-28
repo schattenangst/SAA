@@ -35,14 +35,46 @@ namespace ApiAuthorizationAA.Persistence
 
         #region Methods Public
 
-        public Task<int> Count(Expression<Func<T, bool>> filtro, params Expression<Func<T, object>>[] navigationProperties)
+        /// <summary>
+        /// Counts the number of records that match a search
+        /// </summary>
+        /// <param name="filter">
+        ///     Funtion to filter
+        /// </param>
+        /// <param name="navigationProperties">
+        ///     Properties of navigation
+        /// </param>
+        /// <returns></returns>
+        public virtual async Task<int> CountAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] navigationProperties)
         {
-            throw new NotImplementedException();
+            int counter = 0;
+            IQueryable<T> query = GetQueryable();
+
+            foreach (Expression<Func<T, object>> navigationProperty in navigationProperties)
+            {
+                query = query.Include(navigationProperty);
+            }
+
+            query = query.Where(filter);
+            counter = await query.CountAsync();
+            return counter;
         }
 
-        public Task<IEnumerable<T>> Create(IEnumerable<T> entities)
+        /// <summary>
+        /// Insert records multiples
+        /// </summary>
+        /// <param name="entities">
+        ///     Collection will be inserted into database
+        /// </param>
+        /// <returns>
+        ///     Return object whith data
+        /// </returns>
+        public virtual async Task<IEnumerable<T>> Create(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            var dbSet = dbContext.Set<T>();
+            dbSet.AddRange(entities);
+
+            return await dbContext.SaveChangesAsync() == 0 ? null : entities;
         }
 
         /// <summary>
@@ -130,19 +162,34 @@ namespace ApiAuthorizationAA.Persistence
             return await query.FirstOrDefaultAsync(filter);
         }
 
-        public Task<ICollection<T>> FindAllAsync()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Task<ICollection<T>> FindAllAsync()
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = GetQueryable();
+
+            return await query.ToListAsync();
         }
 
-        public Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>>[] filters = null, params Expression<Func<T, object>>[] navigationProperties)
+        public virtual async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>>[] filters = null, params Expression<Func<T, object>>[] navigationProperties)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = GetQueryable();
+
+            return await query.ToListAsync();
         }
 
-        public Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] navigationProperties)
+        public virtual async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] navigationProperties)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = GetQueryable();
+
+            foreach (Expression<Func<T, object>> navigationProperty in navigationProperties)
+            {
+                query = query.Include(navigationProperty);
+            }
+
+            return await query.Where(filter).ToListAsync();
         }
         /// <summary>
         /// Dispose object <paramref name="dbContext"/>
