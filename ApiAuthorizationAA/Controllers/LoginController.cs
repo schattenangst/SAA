@@ -36,7 +36,7 @@ namespace ApiAuthorizationAA.Controllers
         {
             PasswordHashContainerEntity securePassword = encryptShaServices.CreateHash(user.Password);
 
-            SecureUserEntity secureUser = new SecureUserEntity
+            UserSecureEntity secureUser = new UserSecureEntity
             {
                 Password = user.Password,
                 PasswordHash = Convert.ToBase64String(securePassword.HashedPassword),
@@ -58,7 +58,7 @@ namespace ApiAuthorizationAA.Controllers
         {
             PasswordHashContainerEntity securePassword = encryptShaServices.CreateHash(password);
 
-            SecureUserEntity secureUser = new SecureUserEntity
+            UserSecureEntity secureUser = new UserSecureEntity
             {
                 Password = password,
                 PasswordHash = Convert.ToBase64String(securePassword.HashedPassword),
@@ -73,8 +73,6 @@ namespace ApiAuthorizationAA.Controllers
 
             return Json(secureUser);
         }
-
-
 
         [HttpGet]
         [Route("Users")]

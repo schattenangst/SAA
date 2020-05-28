@@ -1,8 +1,10 @@
 ﻿
 namespace ApiAuthorizationAA.Model.Entities.User
 {
-    public class SecureUserEntity
+    public class UserSecureEntity
     {
+        public string IdUserWeb { get; set; }
+
         public string Password { get; set; }
 
         public string PasswordHash { get; set; }

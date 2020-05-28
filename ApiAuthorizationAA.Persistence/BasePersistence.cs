@@ -127,8 +127,13 @@ namespace ApiAuthorizationAA.Persistence
             return result;
         }
 
-
-        public virtual async Task<IList<T>> FindAsync(Expression<Func<T, bool>> filtro, params Expression<Func<T, object>>[] navigationProperties)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filtro"></param>
+        /// <param name="navigationProperties"></param>
+        /// <returns></returns>
+        public virtual async Task<ICollection<T>> FindAsync(Expression<Func<T, bool>> filtro, params Expression<Func<T, object>>[] navigationProperties)
         {
             IQueryable<T> query = GetQueryable();
 
@@ -173,6 +178,12 @@ namespace ApiAuthorizationAA.Persistence
             return await query.ToListAsync();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filters"></param>
+        /// <param name="navigationProperties"></param>
+        /// <returns></returns>
         public virtual async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>>[] filters = null, params Expression<Func<T, object>>[] navigationProperties)
         {
             IQueryable<T> query = GetQueryable();
@@ -180,6 +191,12 @@ namespace ApiAuthorizationAA.Persistence
             return await query.ToListAsync();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="navigationProperties"></param>
+        /// <returns></returns>
         public virtual async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] navigationProperties)
         {
             IQueryable<T> query = GetQueryable();
@@ -191,10 +208,10 @@ namespace ApiAuthorizationAA.Persistence
 
             return await query.Where(filter).ToListAsync();
         }
+
         /// <summary>
         /// Dispose object <paramref name="dbContext"/>
         /// </summary>
-
         public void Dispose()
         {
             dbContext?.Dispose();

@@ -44,6 +44,7 @@
     <Compile Include="Cryptography\SHA\DecryptShaServices.cs" />
     <Compile Include="Cryptography\SHA\EncryptShaServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\UserCreateHashService.cs" />
     <Compile Include="User\UserEncryptPasswordService.cs" />
     <Compile Include="User\UserService.cs" />
   </ItemGroup>
@@ -55,6 +56,10 @@
     <ProjectReference Include="..\ApiAuthorizationAA.Model\ApiAuthorizationAA.Model.csproj">
       <Project>{742cd37f-936a-4337-b40f-933a80d919d0}</Project>
       <Name>ApiAuthorizationAA.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ApiAuthorizationAA.Persistence\ApiAuthorizationAA.Persistence.csproj">
+      <Project>{05D9E058-4DC4-446F-9E95-2992A8FD1CE7}</Project>
+      <Name>ApiAuthorizationAA.Persistence</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

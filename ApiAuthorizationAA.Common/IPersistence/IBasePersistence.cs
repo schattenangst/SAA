@@ -37,7 +37,7 @@ namespace ApiAuthorizationAA.Common.IPersistence
         /// <param name="filtro"></param>
         /// <param name="navigationProperties"></param>
         /// <returns></returns>
-        Task<IList<T>> FindAsync(Expression<Func<T, bool>> filtro, params Expression<Func<T, object>>[] navigationProperties);
+        Task<ICollection<T>> FindAsync(Expression<Func<T, bool>> filtro, params Expression<Func<T, object>>[] navigationProperties);
 
         /// <summary>
         /// Encuentra el primer elemento de un conjunto, basandose en filtros y porpiedades navegables
