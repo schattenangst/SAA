@@ -1,11 +1,10 @@
 ﻿
-namespace ApiAuthorizationAA.Persistence.User
+namespace ApiAuthorizationAA.Persistence.SecureUser
 {
     using ApiAuthorizationAA.Common.Dto;
-    using ApiAuthorizationAA.Common.IPersistence.User;
+    using ApiAuthorizationAA.Common.IPersistence.SecureUser;
     using ApiAuthorizationAA.Model;
     using ApiAuthorizationAA.Model.Context.Authenticate;
-    using ApiAuthorizationAA.Model.Entities.User;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -22,7 +21,7 @@ namespace ApiAuthorizationAA.Persistence.User
         /// </summary>
         /// <param name="repositoryContext"></param>
         public UserCreateHashPersistence(IRepositoryContext repositoryContext)
-            : base(repositoryContext)
+        : base(repositoryContext)
         {
         }
         #endregion
@@ -33,21 +32,12 @@ namespace ApiAuthorizationAA.Persistence.User
         /// </summary>
         /// <param name="siaraWebUserHash">User info</param>
         /// <returns>True if correct inserted</returns>
-        public async Task<ResponseDto<bool>> InsertNewEncryptedUserPassword(SiaraWebUserHash siaraWebUserHash)
+        public async Task<ResponseDto<bool>> InsertNewEncryptedUserPasswordAsync(SiaraWebUserHash siaraWebUserHash)
         {
             ResponseDto<bool> response = new ResponseDto<bool>(false);
 
             try
             {
-                //// Instance new object SiaraWebHash
-                //SiaraWebUserHash siaraWebUserHash = new SiaraWebUserHash
-                //{
-                //    IdSiaraWebUser = userSecureEntity.IdUserWeb,
-                //    SaltHash = userSecureEntity.Salt,
-                //    PasswordHash = userSecureEntity.PasswordHash,
-                //    IsActive = true,
-                //};
-
                 // Inserte new record
                 SiaraWebUserHash result = await Create(siaraWebUserHash);
 
@@ -59,7 +49,7 @@ namespace ApiAuthorizationAA.Persistence.User
             }
             catch (System.Exception ex)
             {
-                response = new ResponseDto<bool>($"Error al insertar constraseña de usuario {siaraWebUserHash.IdSiaraWebUser}", ex);
+                response = new ResponseDto<bool>($"Error al insertar constraseña cifrada de usuario {siaraWebUserHash.IdSiaraWebUser}", ex);
             }
 
             return response;

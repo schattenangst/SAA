@@ -57,11 +57,10 @@
     <Compile Include="BasePersistence.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Secure\ControlEncryptPersistence.cs" />
-    <Compile Include="Secure\HistoricHashPersistence.cs" />
-    <Compile Include="User\UserCreateHashPersistence.cs" />
-    <Compile Include="User\UserCreateHistoricHashPersistence.cs" />
-    <Compile Include="User\UserUpdateHashPersistence.cs" />
+    <Compile Include="SecureUser\ControlEncryptPersistence.cs" />
+    <Compile Include="SecureUser\UserCreateHashPersistence.cs" />
+    <Compile Include="SecureUser\UserCreateHistoricHashPersistence.cs" />
+    <Compile Include="SecureUser\UserUpdateHashPersistence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -77,6 +76,7 @@
       <Name>ApiAuthorizationAA.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

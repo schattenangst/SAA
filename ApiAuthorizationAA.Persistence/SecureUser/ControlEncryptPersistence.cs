@@ -31,7 +31,7 @@ namespace ApiAuthorizationAA.Persistence.Secure
         /// </summary>
         /// <param name="controlEncrypt">Object <see cref="ControlEncrypt"/> with info</param>
         /// <returns></returns>
-        public async Task<ResponseDto<bool>> InsertNewConfiguration(ControlEncrypt controlEncrypt)
+        public async Task<ResponseDto<bool>> InsertNewConfigurationAsync(ControlEncrypt controlEncrypt)
         {
             ResponseDto<bool> response = new ResponseDto<bool>(false);
 

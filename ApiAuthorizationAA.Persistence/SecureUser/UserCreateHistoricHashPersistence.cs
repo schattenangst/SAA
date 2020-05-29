@@ -1,20 +1,21 @@
 ﻿
-namespace ApiAuthorizationAA.Persistence.Secure
+namespace ApiAuthorizationAA.Persistence.User
 {
     using ApiAuthorizationAA.Common.Dto;
-    using ApiAuthorizationAA.Common.IPersistence.Secure;
+    using ApiAuthorizationAA.Common.IPersistence.SecureUser;
     using ApiAuthorizationAA.Model;
     using ApiAuthorizationAA.Model.Context.Authenticate;
+    using ApiAuthorizationAA.Model.Entities.User;
     using System.Threading.Tasks;
 
-    public class HistoricHashPersistence : BasePersistence<SiaraHistoricHash>, IHistoricHashPersistence
+    public class UserCreateHistoricHashPersistence : BasePersistence<SiaraHistoricHash>, IUserCreateHistoricHashPersistence
     {
-        #region Constructor
+        #region Contructor
         /// <summary>
         /// 
         /// </summary>
         /// <param name="repositoryContext"></param>
-        public HistoricHashPersistence(IRepositoryContext repositoryContext)
+        public UserCreateHistoricHashPersistence(IRepositoryContext repositoryContext)
             : base(repositoryContext)
         {
         }
@@ -26,7 +27,7 @@ namespace ApiAuthorizationAA.Persistence.Secure
         /// </summary>
         /// <param name="siaraHistoricHash">Object <see cref="UserSecureEntity"/></param>
         /// <returns></returns>
-        public async Task<ResponseDto<bool>> InsertNewHistoricUserPassword(SiaraHistoricHash siaraHistoricHash)
+        public async Task<ResponseDto<bool>> InsertNewHistoricUserPasswordAsync(SiaraHistoricHash siaraHistoricHash)
         {
             ResponseDto<bool> response = new ResponseDto<bool>(false);
 
@@ -48,6 +49,11 @@ namespace ApiAuthorizationAA.Persistence.Secure
 
             return response;
         }
+        #endregion
+
+        #region Private Methods
+
+
         #endregion
     }
 }

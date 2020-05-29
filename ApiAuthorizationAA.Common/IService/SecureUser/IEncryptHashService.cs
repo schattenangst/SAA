@@ -1,12 +1,13 @@
-﻿using System;
+﻿
+namespace ApiAuthorizationAA.Common.IService.Secure
+{
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiAuthorizationAA.Common.IService.Secure
-{
-    interface IControlEncryptService
+    public interface IEncryptHashService
     {
     }
 }

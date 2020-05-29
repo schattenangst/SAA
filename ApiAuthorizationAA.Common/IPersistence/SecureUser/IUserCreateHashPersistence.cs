@@ -1,5 +1,5 @@
 ﻿
-namespace ApiAuthorizationAA.Common.IPersistence.User
+namespace ApiAuthorizationAA.Common.IPersistence.SecureUser
 {
     using ApiAuthorizationAA.Common.Dto;
     using ApiAuthorizationAA.Model.Context.Authenticate;
@@ -12,6 +12,6 @@ namespace ApiAuthorizationAA.Common.IPersistence.User
         /// </summary>
         /// <param name="siaraWebUserHash">User info</param>
         /// <returns>True if correct inserted</returns>
-        Task<ResponseDto<bool>> InsertNewEncryptedUserPassword(SiaraWebUserHash siaraWebUserHash);
+        Task<ResponseDto<bool>> InsertNewEncryptedUserPasswordAsync(SiaraWebUserHash siaraWebUserHash);
     }
 }

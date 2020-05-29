@@ -12,7 +12,7 @@ namespace ApiAuthorizationAA.Common.IPersistence.Secure
         /// </summary>
         /// <param name="controlEncrypt">Object <see cref="ControlEncrypt"/> with info</param>
         /// <returns></returns>
-        Task<ResponseDto<bool>> InsertNewConfiguration(ControlEncrypt controlEncrypt);
+        Task<ResponseDto<bool>> InsertNewConfigurationAsync(ControlEncrypt controlEncrypt);
 
         /// <summary>
         /// Update configuration only active or inactive

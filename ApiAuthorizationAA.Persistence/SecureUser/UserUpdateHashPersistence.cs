@@ -1,5 +1,5 @@
 ﻿
-namespace ApiAuthorizationAA.Service.User
+namespace ApiAuthorizationAA.Persistence.User
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@ namespace ApiAuthorizationAA.Service.User
     using System.Text;
     using System.Threading.Tasks;
 
-    public class UserEncryptPasswordService
+    public class UserUpdateHashPersistence
     {
     }
 }

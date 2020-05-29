@@ -1,7 +1,7 @@
 ﻿
 namespace ApiAuthorizationAA.Service.User
 {
-    using ApiAuthorizationAA.Common.IPersistence.User;
+    using ApiAuthorizationAA.Common.IPersistence.SecureUser;
     using ApiAuthorizationAA.Common.IService.User;
     using ApiAuthorizationAA.Model.Entities.User;
 
@@ -32,9 +32,8 @@ namespace ApiAuthorizationAA.Service.User
         /// <param name="userEntity"></param>
         public void InsertNewEncryptPassword(UserEntity userEntity)
         {
-            
-        }
 
+        }
         #endregion
     }
 }
