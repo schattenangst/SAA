@@ -58,9 +58,9 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Secure\ControlEncryptPersistence.cs" />
+    <Compile Include="Secure\HistoricHashPersistence.cs" />
     <Compile Include="User\UserCreateHashPersistence.cs" />
     <Compile Include="User\UserCreateHistoricHashPersistence.cs" />
-    <Compile Include="User\UserPersistence.cs" />
     <Compile Include="User\UserUpdateHashPersistence.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,6 @@ namespace ApiAuthorizationAA.Controllers
     {
         #region Fields
         private readonly IEncryptShaServices encryptShaServices;
-        private readonly IUserService userService;
         #endregion
 
         #region Contructor
@@ -22,10 +21,9 @@ namespace ApiAuthorizationAA.Controllers
         /// </summary>
         /// <param name="encryptShaServices"></param>
         /// <param name="userService"></param>
-        public LoginController(IEncryptShaServices encryptShaServices, IUserService userService)
+        public LoginController(IEncryptShaServices encryptShaServices)
         {
             this.encryptShaServices = encryptShaServices;
-            this.userService = userService;
         }
         #endregion
 
@@ -74,46 +72,46 @@ namespace ApiAuthorizationAA.Controllers
             return Json(secureUser);
         }
 
-        [HttpGet]
-        [Route("Users")]
-        public async Task<IHttpActionResult> GetUsers()
-        {
-            var result = await userService.GetUsers();
+        //[HttpGet]
+        //[Route("Users")]
+        //public async Task<IHttpActionResult> GetUsers()
+        //{
+        //    var result = await userService.GetUsers();
 
-            return Json(result);
-        }
+        //    return Json(result);
+        //}
 
-        [HttpPost]
-        [Route("CreateUserAsync")]
-        public async Task<IHttpActionResult> PostCreateUserAsync([FromBody] UserEntity newUser)
-        {
-            var result = await userService.CreateUser(newUser);
+        //[HttpPost]
+        //[Route("CreateUserAsync")]
+        //public async Task<IHttpActionResult> PostCreateUserAsync([FromBody] UserEntity newUser)
+        //{
+        //    var result = await userService.CreateUser(newUser);
 
-            return Json(result);
-        }
+        //    return Json(result);
+        //}
 
-        [HttpPost]
-        [Route("CreateUserBody")]
-        public async Task<IHttpActionResult> PostCreateUserBody([FromBody] UserEntity newUser)
-        {
-            var result = await userService.CreateUser(newUser);
+        //[HttpPost]
+        //[Route("CreateUserBody")]
+        //public async Task<IHttpActionResult> PostCreateUserBody([FromBody] UserEntity newUser)
+        //{
+        //    var result = await userService.CreateUser(newUser);
 
-            return Json(result);
-        }
+        //    return Json(result);
+        //}
 
-        [HttpPost]
-        [Route("CreateUser")]
-        public async Task<IHttpActionResult> PostCreateUser(UserEntity newUser)
-        {
-            if (newUser == null)
-            {
-                return Json("Objeto nulo");
-            }
+        //[HttpPost]
+        //[Route("CreateUser")]
+        //public async Task<IHttpActionResult> PostCreateUser(UserEntity newUser)
+        //{
+        //    if (newUser == null)
+        //    {
+        //        return Json("Objeto nulo");
+        //    }
 
-            var result = await userService.CreateUser(newUser);
+        //    var result = await userService.CreateUser(newUser);
 
-            return Json(result);
-        }
+        //    return Json(result);
+        //}
 
         [HttpGet]
         [Route("Test")]

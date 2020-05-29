@@ -35,11 +35,11 @@ namespace ApiAuthorizationAA.App_Start
             builder.RegisterType<PasswordHashProvider>().As<IEncryptShaServices>().InstancePerRequest();
 
 
-            // Service
-            builder.RegisterType<UserService>().As<IUserService>().InstancePerRequest();
+            //// Service
+            //builder.RegisterType<UserService>().As<IUserService>().InstancePerRequest();
 
-            //// Persistence
-            builder.RegisterType<UserPersistence>().As<IUserPersistence>().InstancePerRequest();
+            ////// Persistence
+            //builder.RegisterType<UserPersistence>().As<IUserPersistence>().InstancePerRequest();
 
             // 
 

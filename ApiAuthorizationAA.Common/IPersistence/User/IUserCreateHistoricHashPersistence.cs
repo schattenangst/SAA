@@ -7,12 +7,5 @@ namespace ApiAuthorizationAA.Common.IPersistence.User
 
     public interface IUserCreateHistoricHashPersistence
     {
-        /// <summary>
-        /// Insert new historic salt hash password
-        /// </summary>
-        /// <param name="userSecureEntity">Object <see cref="UserSecureEntity"/></param>
-        /// <param name="idControlEncrypt">Id control encrypt from <see cref="SiaraHistoricHash"/></param>
-        /// <returns></returns>
-        Task<ResponseDto<bool>> InsertNewHistoricUserPassword(UserSecureEntity userSecureEntity, int idControlEncrypt);
     }
 }
