@@ -44,13 +44,14 @@
     <Compile Include="Dto\ResponseDto.cs" />
     <Compile Include="IPersistence\IBasePersistence.cs" />
     <Compile Include="IPersistence\Secure\IControlEncryptPersistence.cs" />
+    <Compile Include="IPersistence\Secure\IHistoricHashPersistence.cs" />
     <Compile Include="IPersistence\User\IUserCreateHashPersistence.cs" />
     <Compile Include="IPersistence\User\IUserCreateHistoricHashPersistence.cs" />
-    <Compile Include="IPersistence\User\IUserPersistence.cs" />
     <Compile Include="IService\Crypography\IDecryptShaServices.cs" />
     <Compile Include="IService\Crypography\IEncryptShaServices.cs" />
+    <Compile Include="IService\Secure\IControlEncryptService.cs" />
     <Compile Include="IService\User\IUserCreateHashService.cs" />
-    <Compile Include="IService\User\IUserService.cs" />
+    <Compile Include="IService\User\IUserCreateHistoricHashPersistence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IService\User\IUserEncryptPasswordService.cs" />
     <Compile Include="Resources\Enums.cs" />

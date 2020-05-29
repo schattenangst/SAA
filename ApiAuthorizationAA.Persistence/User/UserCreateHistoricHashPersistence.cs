@@ -22,46 +22,11 @@ namespace ApiAuthorizationAA.Persistence.User
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// Insert new historic salt hash password
-        /// </summary>
-        /// <param name="userSecureEntity">Object <see cref="UserSecureEntity"/></param>
-        /// <param name="idControlEncrypt">Id control encrypt from <see cref="SiaraHistoricHash"/></param>
-        /// <returns></returns>
-        public async Task<ResponseDto<bool>> InsertNewHistoricUserPassword(UserSecureEntity userSecureEntity, int idControlEncrypt)
-        {
-            ResponseDto<bool> response = new ResponseDto<bool>(false);
-
-            try
-            {
-                SiaraHistoricHash siaraHistoricHash = new SiaraHistoricHash
-                {
-                    IdSiaraWebUser = userSecureEntity.IdUserWeb,
-                    IdControlEncrypt = idControlEncrypt,
-                    HistoricSaltHash = userSecureEntity.Salt,
-                };
-
-                // Insert new record
-                SiaraHistoricHash result = await Create(siaraHistoricHash);
-
-                // Validate result is null
-                if (result != null)
-                {
-                    response = new ResponseDto<bool>(true);
-                }
-            }
-            catch (System.Exception ex)
-            {
-                response = new ResponseDto<bool>($"Error al insertar contraseña historica de usuario {userSecureEntity.IdUserWeb}", ex);
-            }
-
-            return response;
-        }
         #endregion
 
         #region Private Methods
 
-        
+
         #endregion
     }
 }
