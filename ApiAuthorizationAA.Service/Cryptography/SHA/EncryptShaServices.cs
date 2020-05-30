@@ -2,7 +2,6 @@
 namespace ApiAuthorizationAA.Service.Cryptography.SHA
 {
     using ApiAuthotizationAA.Model.Entities.Cryptography;
-    using Common.IService.Crypography;
     using System;
     using System.Linq;
     using System.Security.Cryptography;

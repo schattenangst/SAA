@@ -1,11 +1,11 @@
 ﻿
-namespace ApiAuthorizationAA.Common.IService.Secure
+namespace ApiAuthorizationAA.Persistence.SecureUser
 {
     using ApiAuthorizationAA.Common.Dto;
     using ApiAuthorizationAA.Model.Context.Authenticate;
     using System.Threading.Tasks;
 
-    public interface IControlEncryptService
+    public interface IControlEncryptPersistence
     {
         /// <summary>
         /// Insert new configuration to encrypt 
@@ -17,9 +17,15 @@ namespace ApiAuthorizationAA.Common.IService.Secure
         /// <summary>
         /// Update configuration only active or inactive
         /// </summary>
+        /// <returns></returns>
+        Task<ResponseDto<bool>> DisableConfigurationAllAsync();
+
+        /// <summary>
+        /// Update configuration only active or inactive
+        /// </summary>
         /// <param name="idControlEncrypt">Key configuration</param>
         /// <returns></returns>
-        Task<ResponseDto<bool>> UpdateOffConfigurationAsync(int idControlEncrypt);
+        Task<ResponseDto<bool>> DisableConfigurationByIdAsync(int idControlEncrypt);
 
         /// <summary>
         /// Get last active configuration encrypt

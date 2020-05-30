@@ -2,7 +2,9 @@
 namespace ApiAuthorizationAA
 {
     using App_Start;
+    using Autofac.Integration.WebApi;
     using System.Web.Http;
+    using System.Web.Http.Dependencies;
 
     public class WebApiApplication : System.Web.HttpApplication
     {
@@ -10,8 +12,11 @@ namespace ApiAuthorizationAA
         /// Initialize Application
         /// </summary>
         protected void Application_Start()
-        {            
-            ConfigAutofac.Configure();
+        {
+            var config = GlobalConfiguration.Configuration;
+            var container = ConfigAutofac.Configure();
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

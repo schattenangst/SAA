@@ -1,11 +1,13 @@
 ﻿
-namespace ApiAuthorizationAA.Persistence.Secure
+namespace ApiAuthorizationAA.Persistence.SecureUser
 {
     using ApiAuthorizationAA.Common.Dto;
-    using ApiAuthorizationAA.Common.IPersistence.Secure;
     using ApiAuthorizationAA.Model;
     using ApiAuthorizationAA.Model.Context.Authenticate;
+    using ApiAuthorizationAA.Persistence.SecureUser;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -25,13 +27,15 @@ namespace ApiAuthorizationAA.Persistence.Secure
             : base(repositoryContext)
         {
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Insert new configuration to encrypt 
         /// </summary>
         /// <param name="controlEncrypt">Object <see cref="ControlEncrypt"/> with info</param>
         /// <returns></returns>
-        public async Task<ResponseDto<bool>> InsertNewConfigurationAsync(ControlEncrypt controlEncrypt)
+        public async Task<ResponseDto<bool>> CreateConfigurationAsync(ControlEncrypt controlEncrypt)
         {
             ResponseDto<bool> response = new ResponseDto<bool>(false);
 
@@ -56,25 +60,29 @@ namespace ApiAuthorizationAA.Persistence.Secure
         /// <summary>
         /// Update configuration only active or inactive
         /// </summary>
-        /// <param name="idControlEncrypt">Key configuration</param>
         /// <returns></returns>
-        public async Task<ResponseDto<bool>> UpdateOffConfigurationAsync(int idControlEncrypt)
+        public async Task<ResponseDto<bool>> DisableConfigurationAllAsync()
         {
             ResponseDto<bool> response = new ResponseDto<bool>(false);
 
             try
             {
-                ControlEncrypt result = await FindFirstAsync(x => x.IdControlEncrypt == idControlEncrypt
-                                                             && x.IsActive == true);
+                ICollection<ControlEncrypt> results = await FindAllAsync(x => x.IsActive == true);
 
-                if (result != null)
+                if (results != null && results.Count() > 0)
                 {
-                    result.IsActive = false;
-                    result = await Edit(result);
+                    foreach (var item in results)
+                    {
+                        if (item.IsActive)
+                        {
+                            item.IsActive = false;
+                            _ = await Edit(item);
+                        }
+                    }
                 }
 
                 // Validate result is null
-                if (result != null)
+                if (results != null)
                 {
                     response = new ResponseDto<bool>(true);
                 }
@@ -85,6 +93,97 @@ namespace ApiAuthorizationAA.Persistence.Secure
             }
 
             return response;
+        }
+
+        /// <summary>
+        /// Update configuration only active or inactive
+        /// </summary>
+        /// <param name="idControlEncrypt">Key configuration</param>
+        /// <returns></returns>
+        public async Task<ResponseDto<bool>> DisableConfigurationByIdAsync(int idControlEncrypt)
+        {
+            ResponseDto<bool> response = new ResponseDto<bool>(false);
+
+            try
+            {
+                ControlEncrypt result = await FindFirstAsync(x => x.IdControlEncrypt == idControlEncrypt
+                                                                           && x.IsActive == true);
+
+                // Validate result is null
+                if (result != null)
+                {
+                    result.IsActive = false;
+                    _ = await Edit(result);
+                    response = new ResponseDto<bool>(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                response = new ResponseDto<bool>("Error al actualizar configuración de cifrado.", ex);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Get last record active from encrypt configuration
+        /// </summary>
+        /// <returns>Objecto with data <see cref="ControlEncrypt"/></returns>
+        public async Task<ResponseDto<ControlEncrypt>> GetCurrentControlEncryptAsync()
+        {
+            ResponseDto<ControlEncrypt> response = null;
+
+            try
+            {
+                // Get last active record 
+                ControlEncrypt result = (await FindAllAsync(x => x.IsActive == true)).OrderByDescending(x => x.RegisterDate).FirstOrDefault();
+
+                response = new ResponseDto<ControlEncrypt>(result);
+            }
+            catch (Exception ex)
+            {
+                response = new ResponseDto<ControlEncrypt>("Error al obtener configuración actual de cifrado.", ex);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Get configuration encrypt by Id
+        /// </summary>
+        /// <param name="IdControlEncrypt"></param>
+        /// <returns></returns>
+        public async Task<ResponseDto<ControlEncrypt>> GetControlEncryptByIdAsync(int IdControlEncrypt)
+        {
+            ResponseDto<ControlEncrypt> response = null;
+
+            try
+            {
+                // Get configuration by id
+                ControlEncrypt result = await FindFirstAsync(x => x.IdControlEncrypt == IdControlEncrypt);
+
+                response = new ResponseDto<ControlEncrypt>(result);
+            }
+            catch (Exception ex)
+            {
+                response = new ResponseDto<ControlEncrypt>("Error al obtener configuración de cifrado.", ex);
+            }
+
+            return response;
+        }
+        #endregion
+
+        #region Private Methods
+        private bool InactiveControl(bool isActive)
+        {
+            bool temp = false;
+
+            if (isActive)
+            {
+                temp = false;
+            }
+
+            return temp;
         }
         #endregion
     }

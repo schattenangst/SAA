@@ -1,9 +1,8 @@
 ﻿
 namespace ApiAuthorizationAA.Controllers
 {
+    using ApiAuthorizationAA.Service.Cryptography.SHA;
     using ApiAuthotizationAA.Model.Entities.Cryptography;
-    using Common.IService.Crypography;
-    using Common.IService.User;
     using Model.Entities.User;
     using System;
     using System.Threading.Tasks;

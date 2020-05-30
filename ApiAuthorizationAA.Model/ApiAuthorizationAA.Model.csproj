@@ -65,6 +65,7 @@
     <Compile Include="Context\Authenticate\SiaraHistoricHash.cs" />
     <Compile Include="Context\Authenticate\SiaraWebUser.cs" />
     <Compile Include="Context\Authenticate\SiaraWebUserHash.cs" />
+    <Compile Include="Entities\SecureUser\ControlEncryptEntity.cs" />
     <Compile Include="IRepositoryContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryContext.cs" />

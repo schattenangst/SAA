@@ -56,11 +56,14 @@
   <ItemGroup>
     <Compile Include="BasePersistence.cs" />
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="IBasePersistence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecureUser\ControlEncryptPersistence.cs" />
+    <Compile Include="SecureUser\IControlEncryptPersistence.cs" />
+    <Compile Include="SecureUser\IUserCreateHashPersistence.cs" />
+    <Compile Include="SecureUser\IUserCreateHistoricHashPersistence.cs" />
     <Compile Include="SecureUser\UserCreateHashPersistence.cs" />
     <Compile Include="SecureUser\UserCreateHistoricHashPersistence.cs" />
-    <Compile Include="SecureUser\UserUpdateHashPersistence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

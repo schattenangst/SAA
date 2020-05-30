@@ -12,7 +12,7 @@ namespace ApiAuthorizationAA.Common.IPersistence.Secure
         /// </summary>
         /// <param name="controlEncrypt">Object <see cref="ControlEncrypt"/> with info</param>
         /// <returns></returns>
-        Task<ResponseDto<bool>> InsertNewConfigurationAsync(ControlEncrypt controlEncrypt);
+        Task<ResponseDto<bool>> CreateConfigurationAsync(ControlEncrypt controlEncrypt);
 
         /// <summary>
         /// Update configuration only active or inactive
@@ -20,5 +20,18 @@ namespace ApiAuthorizationAA.Common.IPersistence.Secure
         /// <param name="idControlEncrypt">Key configuration</param>
         /// <returns></returns>
         Task<ResponseDto<bool>> UpdateOffConfigurationAsync(int idControlEncrypt);
+
+        /// <summary>
+        /// Get last active configuration encrypt
+        /// </summary>
+        /// <returns></returns>
+        Task<ResponseDto<ControlEncrypt>> GetCurrentControlEncryptAsync();
+
+        /// <summary>
+        /// Get configuration encrypt by Id
+        /// </summary>
+        /// <param name="IdControlEncrypt"></param>
+        /// <returns></returns>
+        Task<ResponseDto<ControlEncrypt>> GetControlEncryptByIdAsync(int IdControlEncrypt);
     }
 }

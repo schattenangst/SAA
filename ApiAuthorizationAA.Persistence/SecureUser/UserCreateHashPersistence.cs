@@ -2,7 +2,6 @@
 namespace ApiAuthorizationAA.Persistence.SecureUser
 {
     using ApiAuthorizationAA.Common.Dto;
-    using ApiAuthorizationAA.Common.IPersistence.SecureUser;
     using ApiAuthorizationAA.Model;
     using ApiAuthorizationAA.Model.Context.Authenticate;
     using System.Threading.Tasks;

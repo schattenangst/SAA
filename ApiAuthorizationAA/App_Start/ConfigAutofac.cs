@@ -1,26 +1,18 @@
 ﻿
 namespace ApiAuthorizationAA.App_Start
 {
-    using Persistence.User;
+    using ApiAuthorizationAA.Persistence.SecureUser;
+    using ApiAuthorizationAA.Service.SecureUser;
     using Autofac;
     using Autofac.Integration.WebApi;
-    using Common.IPersistence.User;
-    using Common.IService.Crypography;
-    using Common.IService.User;
-    using Service.Cryptography.SHA;
-    using Service.User;
+    using Model;
     using System.Reflection;
     using System.Web.Http;
-    using Controllers;
-    using Common.IPersistence;
-    using Persistence;
-    using Model;
 
-    public class ConfigAutofac
+    public static class ConfigAutofac
     {
-        public static void Configure()
+        public static IContainer Configure()
         {
-            
             // Get HttpConfiguration
             var config = GlobalConfiguration.Configuration;
 
@@ -28,24 +20,25 @@ namespace ApiAuthorizationAA.App_Start
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            // Register other types
-            builder.RegisterType<LoginController>().InstancePerRequest();
+            // Application DbContext
             builder.RegisterType<ApplicationDbContext>().As<IRepositoryContext>().InstancePerRequest();
-            
-            builder.RegisterType<PasswordHashProvider>().As<IEncryptShaServices>().InstancePerRequest();
 
+            // Service
+            builder.RegisterType<ControlEncryptService>().As<IControlEncryptService>().InstancePerRequest();
 
-            //// Service
-            //builder.RegisterType<UserService>().As<IUserService>().InstancePerRequest();
+            // Persistence
+            builder.RegisterType<ControlEncryptPersistence>().As<IControlEncryptPersistence>().InstancePerRequest();
 
-            ////// Persistence
-            //builder.RegisterType<UserPersistence>().As<IUserPersistence>().InstancePerRequest();
-
-            // 
+            //// Register all type by query
+            //builder.RegisterAssemblyTypes(Assembly.Load(nameof(ApiAuthorizationAA.Service)))
+            //    .Where(t => t.Namespace.Contains("SecureUser"))
+            //    .As(t => t.GetInterfaces().FirstOrDefault(i => i.Name == "I" + t.Name));
 
             // Create and assign a dependency resolver for Web API to use
-            var container = builder.Build();
-            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            //IContainer container = builder.Build();
+            //config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+            return builder.Build();
         }
     }
 }

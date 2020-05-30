@@ -1,7 +1,6 @@
 ﻿
 namespace ApiAuthorizationAA.Persistence
 {
-    using Common.IPersistence;
     using Model;
     using System;
     using System.Collections.Generic;
@@ -27,10 +26,18 @@ namespace ApiAuthorizationAA.Persistence
         {
             this.repositoryContext = repositoryContext;
             dbContext = repositoryContext as ApplicationDbContext;
+            dbContext.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Expose dbContext
+        /// </summary>
+        //public DbContext DbContext
+        //{
+        //    get { return dbContext; }
+        //}
         #endregion
 
         #region Methods Public
@@ -111,6 +118,25 @@ namespace ApiAuthorizationAA.Persistence
 
             var result = await dbContext.SaveChangesAsync();
             return result == 0 ? null : entity;
+        }
+
+        public virtual async Task<bool> Edit(IEnumerable<T> entities)
+        {
+            bool status = false;
+
+            foreach (var entity in entities)
+            {
+                var modifyEntity = dbContext.Entry(entities);
+                DbSet = dbContext.Set<T>();
+
+                DbSet.Attach(entity);
+                modifyEntity.State = EntityState.Modified;
+                var result = await dbContext.SaveChangesAsync();
+
+                status = true;
+            }
+
+            return status;
         }
 
         /// <summary>
