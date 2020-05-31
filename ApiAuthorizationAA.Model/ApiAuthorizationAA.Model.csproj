@@ -67,6 +67,11 @@
     <Compile Include="Context\Authenticate\SiaraWebUserHash.cs" />
     <Compile Include="Entities\SecureUser\ControlEncryptEntity.cs" />
     <Compile Include="IRepositoryContext.cs" />
+    <Compile Include="Migrations\202005310148429_InitialCreationDB.cs" />
+    <Compile Include="Migrations\202005310148429_InitialCreationDB.designer.cs">
+      <DependentUpon>202005310148429_InitialCreationDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryContext.cs" />
     <Compile Include="Entities\User\UserSecureEntity.cs" />
@@ -77,6 +82,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202005310148429_InitialCreationDB.resx">
+      <DependentUpon>202005310148429_InitialCreationDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
