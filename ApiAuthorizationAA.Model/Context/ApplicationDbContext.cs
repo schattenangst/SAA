@@ -53,22 +53,26 @@ namespace ApiAuthorizationAA.Model
             modelBuilder.Entity<SiaraWebUser>();
             modelBuilder.Entity<ControlEncrypt>();
 
+            // Historico de contraseñas por usuario
             modelBuilder.Entity<SiaraHistoricHash>()
-                .HasRequired<SiaraWebUser>(s => s.SiaraWebUser)
+                .HasRequired(s => s.SiaraWebUser)
                 .WithMany(g => g.SiaraHistoricHashes)
-                .HasForeignKey<string>(s => s.IdSiaraWebUser);
+                .HasForeignKey(s => s.IdSiaraWebUser);
 
             modelBuilder.Entity<SiaraHistoricHash>()
-                .HasRequired<ControlEncrypt>(s => s.ControlEncrypt)
+                .HasRequired(s => s.ControlEncrypt)
                 .WithMany(g => g.SiaraHistoricHashes)
-                .HasForeignKey<int>(s => s.IdControlEncrypt);
+                .HasForeignKey(s => s.IdControlEncrypt);
+
+            // Contraseña actual cifrada por usuario
+            modelBuilder.Entity<SiaraWebUserHash>()
+                .HasRequired(s => s.SiaraWebUser)
+                .WithRequiredDependent(g => g.SiaraWebUserHash);
 
             modelBuilder.Entity<SiaraWebUserHash>()
-                .HasRequired<SiaraWebUser>(s => s.SiaraWebUser)
+                .HasRequired(s => s.ControlEncrypt)
                 .WithMany(g => g.SiaraWebUserHashes)
-                .HasForeignKey<string>(s => s.IdSiaraWebUser);
-
-            modelBuilder.Entity<UsuarioTest>();
+                .HasForeignKey(s => s.IdControlEncrypt);
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
@@ -78,8 +82,5 @@ namespace ApiAuthorizationAA.Model
         public DbSet<SiaraHistoricHash> SiaraHistoricHashes { get; set; }
         public DbSet<SiaraWebUser> SiaraWebUsers { get; set; }
         public DbSet<SiaraWebUserHash> SiaraWebUserHashes { get; set; }
-
-        // Test
-        public DbSet<UsuarioTest> UsuarioTests { get; set; }
     }
 }

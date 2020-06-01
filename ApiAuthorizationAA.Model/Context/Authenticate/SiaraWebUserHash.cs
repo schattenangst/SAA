@@ -8,19 +8,25 @@ namespace ApiAuthorizationAA.Model.Context.Authenticate
     [Table("SiaraUsuarioWebHash", Schema = "secure")]
     public class SiaraWebUserHash
     {
-        [Key]
-        [Column("IdUsuarioWebPassword")]
-        public int IdSiaraWebUserHash { get; set; }
+        //[Key]
+        //[Column("IdUsuarioWebPassword")]
+        //public int IdSiaraWebUserHash { get; set; }
 
-        [Required]
+        /// <summary>
+        /// ForeignKey with <see cref="SiaraWebUser"/>
+        /// </summary>
+        [Key]
         [Column("id_usuario")]
         [StringLength(20)]
         public string IdSiaraWebUser { get; set; }
 
-        //[Required]
-        //[Column("IdUsuarioWebHash")]
-        //[MaxLength(20)]
-        //public string IdUserWebHash { get; set; }
+        /// <summary>
+        /// Id Control encrypt, foreignkey with <see cref="ControlEncrypt"/>
+        /// Configuration by encrypt
+        /// </summary>
+        [Required]
+        [Column("IdControlCifrado")]
+        public int IdControlEncrypt { get; set; }
 
         [Required]
         [MaxLength]
@@ -35,12 +41,13 @@ namespace ApiAuthorizationAA.Model.Context.Authenticate
         public DateTime RegisterDate { get; set; } = DateTime.Now;
 
         [Column("FechaModificacion")]
-        public DateTime RegisterUpdate { get; set; }
+        public DateTime? RegisterUpdate { get; set; }
 
         [Required]
         [Column("Activo")]
         public bool IsActive { get; set; } = false;
 
         public virtual SiaraWebUser SiaraWebUser { get; set; }
+        public virtual ControlEncrypt ControlEncrypt { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace ApiAuthorizationAA.Persistence.SecureUser
     using ApiAuthorizationAA.Model.Entities.User;
     using System.Threading.Tasks;
 
-    public interface IUserCreateHistoricHashPersistence
+    public interface IUserHistoricHashPersistence
     {
         /// <summary>
         /// Insert new historic salt hash password

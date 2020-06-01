@@ -10,7 +10,7 @@ namespace ApiAuthorizationAA.Controllers
     using System.Web.Http;
 
     //[Authorize]
-    [Route("encrypt")]
+    [RoutePrefix("configuration/encrypt")]
     /// <summary>
     /// 
     /// </summary>

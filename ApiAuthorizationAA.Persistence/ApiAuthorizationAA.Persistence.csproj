@@ -60,10 +60,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EncryptConfiguration\ControlEncryptPersistence.cs" />
     <Compile Include="EncryptConfiguration\IControlEncryptPersistence.cs" />
-    <Compile Include="SecureUser\IUserCreateHashPersistence.cs" />
-    <Compile Include="SecureUser\IUserCreateHistoricHashPersistence.cs" />
-    <Compile Include="SecureUser\UserCreateHashPersistence.cs" />
-    <Compile Include="SecureUser\UserCreateHistoricHashPersistence.cs" />
+    <Compile Include="SecureUser\IUserHashPersistence.cs" />
+    <Compile Include="SecureUser\IUserHistoricHashPersistence.cs" />
+    <Compile Include="SecureUser\UserHashPersistence.cs" />
+    <Compile Include="SecureUser\UserHistoricHashPersistence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

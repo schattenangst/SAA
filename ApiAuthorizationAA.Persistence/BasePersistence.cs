@@ -31,13 +31,6 @@ namespace ApiAuthorizationAA.Persistence
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Expose dbContext
-        /// </summary>
-        //public DbContext DbContext
-        //{
-        //    get { return dbContext; }
-        //}
         #endregion
 
         #region Methods Public

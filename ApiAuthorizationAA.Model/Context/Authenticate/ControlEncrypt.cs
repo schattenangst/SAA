@@ -32,5 +32,6 @@ namespace ApiAuthorizationAA.Model.Context.Authenticate
         public bool IsActive { get; set; }
 
         public virtual ICollection<SiaraHistoricHash> SiaraHistoricHashes { get; set; }
+        public virtual ICollection<SiaraWebUserHash> SiaraWebUserHashes { get; set; }
     }
 }

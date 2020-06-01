@@ -1,8 +1,11 @@
 ﻿
 namespace ApiAuthorizationAA.Controllers
 {
+    using ApiAuthorizationAA.Common.Dto;
     using ApiAuthorizationAA.Model.Entities.User;
     using ApiAuthorizationAA.Service.SecureUser;
+    using System.Net;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
 
@@ -10,13 +13,14 @@ namespace ApiAuthorizationAA.Controllers
     /// <summary>
     /// Servicio para asegurar credenciales de usuario
     /// </summary>
+    [RoutePrefix("secure/user")]
     public class SecureUserController : ApiController
     {
         #region Fields
         /// <summary>
         /// 
         /// </summary>
-        private readonly IUserCreateHashService userCreateHashService;
+        private readonly IUserHashService userCreateHashService;
         #endregion
 
         #region Constructor
@@ -24,37 +28,86 @@ namespace ApiAuthorizationAA.Controllers
         /// 
         /// </summary>
         /// <param name="userCreateHashService"></param>
-        public SecureUserController(IUserCreateHashService userCreateHashService)
+        public SecureUserController(IUserHashService userCreateHashService)
         {
             this.userCreateHashService = userCreateHashService;
         }
         #endregion
 
+        #region Actions
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        [Route("")]
-        public IHttpActionResult Get()
+        [Route("validate/{user}/{password}")]
+        public IHttpActionResult Get(string user, string password)
         {
-            return Ok();
+            return Ok("usuario válido");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userEntity"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("create")]
         public async Task<IHttpActionResult> Post([FromBody]UserEntity userEntity)
         {
-            //
-            var response = await userCreateHashService.CreateNewUserHashPassword(userEntity);
+            if (ModelState.IsValid)
+            {
+                // 
+                var response = await userCreateHashService.CreateNewUserHashPassword(userEntity);
 
-            return Ok(response.Response);
+                // 
+                if (response != null && !response.IsError)
+                {
+                    return Created("create info success", response.Response);
+                }
+                else
+                {
+                    HttpResponseMessage responseMessage = Request.CreateResponse(HttpStatusCode.InternalServerError, response.ErrorMessage);
+                    return ResponseMessage(responseMessage);
+                }
+            }
+            else
+            {
+                return BadRequest("Not a valid model");
+            }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userEntity"></param>
+        /// <returns></returns>
         [HttpPut]
-        [Route("")]
-        public IHttpActionResult Put()
+        [Route("update")]
+        public async Task<IHttpActionResult> Put([FromBody] UserEntity userEntity)
         {
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                // 
+                ResponseDto<bool> response = await userCreateHashService.UpdateUserHashPassword(userEntity);
+
+                // 
+                if (response != null && !response.IsError)
+                {
+                    HttpResponseMessage responseMessage = Request.CreateResponse(HttpStatusCode.Accepted, response.Response);
+                    return ResponseMessage(responseMessage);
+                }
+                else
+                {
+                    HttpResponseMessage responseMessage = Request.CreateResponse(HttpStatusCode.InternalServerError, response.ErrorMessage);
+                    return ResponseMessage(responseMessage);
+                }
+            }
+            else
+            {
+                return BadRequest("Not a valid model");
+            }
         }
-
-
+        #endregion
     }
 }

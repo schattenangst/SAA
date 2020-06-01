@@ -49,8 +49,8 @@
     <Compile Include="SecureUser\EncryptHashService.cs" />
     <Compile Include="EncryptConfiguration\IControlEncryptService.cs" />
     <Compile Include="SecureUser\IEncryptHashService.cs" />
-    <Compile Include="SecureUser\IUserCreateHashService.cs" />
-    <Compile Include="SecureUser\UserCreateHashService.cs" />
+    <Compile Include="SecureUser\IUserHashService.cs" />
+    <Compile Include="SecureUser\UserHashService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApiAuthorizationAA.Common\ApiAuthorizationAA.Common.csproj">

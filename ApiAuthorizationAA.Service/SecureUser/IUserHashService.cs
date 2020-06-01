@@ -5,9 +5,11 @@ namespace ApiAuthorizationAA.Service.SecureUser
     using ApiAuthorizationAA.Model.Entities.User;
     using System.Threading.Tasks;
 
-    public interface IUserCreateHashService
+    public interface IUserHashService
     {
 
         Task<ResponseDto<bool>> CreateNewUserHashPassword(UserEntity userEntity);
+
+        Task<ResponseDto<bool>> UpdateUserHashPassword(UserEntity userEntity);
     }
 }
