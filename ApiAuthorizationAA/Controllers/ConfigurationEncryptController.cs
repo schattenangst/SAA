@@ -2,17 +2,12 @@
 namespace ApiAuthorizationAA.Controllers
 {
     using ApiAuthorizationAA.Common.Dto;
-    using ApiAuthorizationAA.Model.Entities.SecureUser;
-    using ApiAuthorizationAA.Service.SecureUser;
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
+    using ApiAuthorizationAA.Model.Entities.EncryptConfiguration;
+    using ApiAuthorizationAA.Service.EncryptConfiguration;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
-    using System.Web.Http.Controllers;
 
     //[Authorize]
     [Route("encrypt")]

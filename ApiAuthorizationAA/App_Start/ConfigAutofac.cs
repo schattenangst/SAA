@@ -1,7 +1,9 @@
 ﻿
 namespace ApiAuthorizationAA.App_Start
 {
+    using ApiAuthorizationAA.Persistence.EncryptConfiguration;
     using ApiAuthorizationAA.Persistence.SecureUser;
+    using ApiAuthorizationAA.Service.EncryptConfiguration;
     using ApiAuthorizationAA.Service.SecureUser;
     using Autofac;
     using Autofac.Integration.WebApi;
@@ -25,9 +27,12 @@ namespace ApiAuthorizationAA.App_Start
 
             // Service
             builder.RegisterType<ControlEncryptService>().As<IControlEncryptService>().InstancePerRequest();
+            builder.RegisterType<UserCreateHashService>().As<IUserCreateHashService>().InstancePerRequest();
 
             // Persistence
             builder.RegisterType<ControlEncryptPersistence>().As<IControlEncryptPersistence>().InstancePerRequest();
+            builder.RegisterType<UserCreateHashPersistence>().As<IUserCreateHashPersistence>().InstancePerRequest();
+            builder.RegisterType<UserCreateHistoricHashPersistence>().As<IUserCreateHistoricHashPersistence>().InstancePerRequest();
 
             //// Register all type by query
             //builder.RegisterAssemblyTypes(Assembly.Load(nameof(ApiAuthorizationAA.Service)))

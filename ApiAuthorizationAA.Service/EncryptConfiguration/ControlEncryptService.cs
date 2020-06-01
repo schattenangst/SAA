@@ -1,11 +1,10 @@
 ﻿
-namespace ApiAuthorizationAA.Service.SecureUser
+namespace ApiAuthorizationAA.Service.EncryptConfiguration
 {
     using ApiAuthorizationAA.Common.Dto;
     using ApiAuthorizationAA.Model.Context.Authenticate;
-    using ApiAuthorizationAA.Model.Entities.SecureUser;
-    using ApiAuthorizationAA.Persistence.SecureUser;
-    using ApiAuthorizationAA.Service.SecureUser;
+    using ApiAuthorizationAA.Model.Entities.EncryptConfiguration;
+    using ApiAuthorizationAA.Persistence.EncryptConfiguration;
     using System;
     using System.Threading.Tasks;
 
@@ -76,15 +75,13 @@ namespace ApiAuthorizationAA.Service.SecureUser
         /// <returns></returns>
         public async Task<ResponseDto<ControlEncryptEntity>> GetCurrentControlEncryptAsync()
         {
-            ResponseDto<ControlEncryptEntity> response = null;
-
-            ResponseDto<ControlEncrypt> result = await controlEncryptPersistence.GetCurrentControlEncryptAsync();
+            ResponseDto<ControlEncryptEntity> response = await controlEncryptPersistence.GetCurrentControlEncryptAsync();
 
             // Validate result
-            if (result != null && !result.IsError)
+            if (response != null && !response.IsError)
             {
-                ControlEncryptEntity controlEncryptEntity = MapperEntity(result.Response);
-                response = new ResponseDto<ControlEncryptEntity>(controlEncryptEntity);
+                //ControlEncryptEntity controlEncryptEntity =await  MapperEntity(result.Response);
+                //response = new ResponseDto<ControlEncryptEntity>();
             }
 
             return response;

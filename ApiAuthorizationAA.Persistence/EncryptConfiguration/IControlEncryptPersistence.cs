@@ -1,8 +1,9 @@
 ﻿
-namespace ApiAuthorizationAA.Common.IPersistence.Secure
+namespace ApiAuthorizationAA.Persistence.EncryptConfiguration
 {
     using ApiAuthorizationAA.Common.Dto;
     using ApiAuthorizationAA.Model.Context.Authenticate;
+    using ApiAuthorizationAA.Model.Entities.EncryptConfiguration;
     using System.Threading.Tasks;
 
     public interface IControlEncryptPersistence
@@ -17,15 +18,21 @@ namespace ApiAuthorizationAA.Common.IPersistence.Secure
         /// <summary>
         /// Update configuration only active or inactive
         /// </summary>
+        /// <returns></returns>
+        Task<ResponseDto<bool>> DisableConfigurationAllAsync();
+
+        /// <summary>
+        /// Update configuration only active or inactive
+        /// </summary>
         /// <param name="idControlEncrypt">Key configuration</param>
         /// <returns></returns>
-        Task<ResponseDto<bool>> UpdateOffConfigurationAsync(int idControlEncrypt);
+        Task<ResponseDto<bool>> DisableConfigurationByIdAsync(int idControlEncrypt);
 
         /// <summary>
         /// Get last active configuration encrypt
         /// </summary>
         /// <returns></returns>
-        Task<ResponseDto<ControlEncrypt>> GetCurrentControlEncryptAsync();
+        Task<ResponseDto<ControlEncryptEntity>> GetCurrentControlEncryptAsync();
 
         /// <summary>
         /// Get configuration encrypt by Id

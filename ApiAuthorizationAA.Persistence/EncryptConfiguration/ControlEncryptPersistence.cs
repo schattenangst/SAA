@@ -1,10 +1,10 @@
 ﻿
-namespace ApiAuthorizationAA.Persistence.SecureUser
+namespace ApiAuthorizationAA.Persistence.EncryptConfiguration
 {
     using ApiAuthorizationAA.Common.Dto;
     using ApiAuthorizationAA.Model;
     using ApiAuthorizationAA.Model.Context.Authenticate;
-    using ApiAuthorizationAA.Persistence.SecureUser;
+    using ApiAuthorizationAA.Model.Entities.EncryptConfiguration;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -128,21 +128,34 @@ namespace ApiAuthorizationAA.Persistence.SecureUser
         /// <summary>
         /// Get last record active from encrypt configuration
         /// </summary>
-        /// <returns>Objecto with data <see cref="ControlEncrypt"/></returns>
-        public async Task<ResponseDto<ControlEncrypt>> GetCurrentControlEncryptAsync()
+        /// <returns>Objecto with data <see cref="ControlEncryptEntity"/></returns>
+        public async Task<ResponseDto<ControlEncryptEntity>> GetCurrentControlEncryptAsync()
         {
-            ResponseDto<ControlEncrypt> response = null;
+            ResponseDto<ControlEncryptEntity> response = null;
 
             try
             {
                 // Get last active record 
                 ControlEncrypt result = (await FindAllAsync(x => x.IsActive == true)).OrderByDescending(x => x.RegisterDate).FirstOrDefault();
 
-                response = new ResponseDto<ControlEncrypt>(result);
+                if (result != null)
+                {
+                    // ToDo: Change to mapper
+                    ControlEncryptEntity controlEncryptEntity = new ControlEncryptEntity
+                    {
+                        IdControlEncrypt = result.IdControlEncrypt,
+                        HashSize = result.HashSize,
+                        SaltSize = result.SaltSize,
+                        Iterations = result.Iterations,
+                    };
+
+                    response = new ResponseDto<ControlEncryptEntity>(controlEncryptEntity);
+                }
+
             }
             catch (Exception ex)
             {
-                response = new ResponseDto<ControlEncrypt>("Error al obtener configuración actual de cifrado.", ex);
+                response = new ResponseDto<ControlEncryptEntity>("Error al obtener configuración actual de cifrado.", ex);
             }
 
             return response;

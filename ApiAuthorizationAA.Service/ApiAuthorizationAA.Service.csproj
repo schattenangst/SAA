@@ -45,10 +45,12 @@
     <Compile Include="Cryptography\SHA\DecryptShaServices.cs" />
     <Compile Include="Cryptography\SHA\EncryptShaServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecureUser\ControlEncryptService.cs" />
+    <Compile Include="EncryptConfiguration\ControlEncryptService.cs" />
     <Compile Include="SecureUser\EncryptHashService.cs" />
-    <Compile Include="SecureUser\IControlEncryptService.cs" />
+    <Compile Include="EncryptConfiguration\IControlEncryptService.cs" />
     <Compile Include="SecureUser\IEncryptHashService.cs" />
+    <Compile Include="SecureUser\IUserCreateHashService.cs" />
+    <Compile Include="SecureUser\UserCreateHashService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApiAuthorizationAA.Common\ApiAuthorizationAA.Common.csproj">

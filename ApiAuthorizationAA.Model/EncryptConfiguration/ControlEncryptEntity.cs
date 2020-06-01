@@ -1,5 +1,5 @@
 ﻿
-namespace ApiAuthorizationAA.Model.Entities.SecureUser
+namespace ApiAuthorizationAA.Model.Entities.EncryptConfiguration
 {
     using System;
 

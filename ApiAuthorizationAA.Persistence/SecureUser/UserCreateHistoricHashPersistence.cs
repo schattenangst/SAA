@@ -1,11 +1,10 @@
 ﻿
-namespace ApiAuthorizationAA.Persistence.User
+namespace ApiAuthorizationAA.Persistence.SecureUser
 {
     using ApiAuthorizationAA.Common.Dto;
     using ApiAuthorizationAA.Model;
     using ApiAuthorizationAA.Model.Context.Authenticate;
     using ApiAuthorizationAA.Model.Entities.User;
-    using ApiAuthorizationAA.Persistence.SecureUser;
     using System.Threading.Tasks;
 
     public class UserCreateHistoricHashPersistence : BasePersistence<SiaraHistoricHash>, IUserCreateHistoricHashPersistence
