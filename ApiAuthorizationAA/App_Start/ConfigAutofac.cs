@@ -26,7 +26,7 @@ namespace ApiAuthorizationAA.App_Start
             builder.RegisterType<ApplicationDbContext>().As<IRepositoryContext>().InstancePerRequest();
 
             // Service
-            builder.RegisterType<ControlEncryptService>().As<IControlEncryptService>().InstancePerRequest();
+            builder.RegisterType<ControlEncryptService>().As<IControlEncryptPersistence>().InstancePerRequest();
             builder.RegisterType<UserHashService>().As<IUserHashService>().InstancePerRequest();
 
             // Persistence

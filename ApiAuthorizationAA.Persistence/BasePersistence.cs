@@ -189,13 +189,33 @@ namespace ApiAuthorizationAA.Persistence
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
         /// <returns></returns>
-        public virtual async Task<ICollection<T>> FindAllAsync()
+        public virtual async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> filter, int pageIndex, int pageSize)
         {
             IQueryable<T> query = GetQueryable();
 
-            return await query.ToListAsync();
+            return await query.Where(filter)
+                              .Skip((pageIndex - 1) * pageSize)
+                              .Take(pageSize)
+                              .ToListAsync();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Task<ICollection<T>> FindAllAsync(int pageIndex, int pageSize)
+        {
+            IQueryable<T> query = GetQueryable();
+
+            return await query.Skip((pageIndex - 1) * pageSize)
+                              .Take(pageSize)
+                              .ToListAsync();
+        }
+
 
         /// <summary>
         /// 

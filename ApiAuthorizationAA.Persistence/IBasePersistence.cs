@@ -9,10 +9,21 @@ namespace ApiAuthorizationAA.Persistence
     public interface IBasePersistence<T> where T : class
     {
         /// <summary>
-        /// Encuentra todos los elementos de un conjunto
+        /// Encuentra todos los elementos de un conjunto paginados
         /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
         /// <returns></returns>
-        Task<ICollection<T>> FindAllAsync();
+        Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> filter, int pageIndex, int pageSize);
+
+        /// <summary>
+        /// Encuentra todos los elementos de un conjunto paginados
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        Task<ICollection<T>> FindAllAsync(int pageIndex, int pageSize);
 
         /// <summary>
         /// Encuentra todos los elementos de un conjunto, basandose en filtros e includ

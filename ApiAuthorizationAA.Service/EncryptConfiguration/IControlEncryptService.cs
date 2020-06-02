@@ -5,7 +5,7 @@ namespace ApiAuthorizationAA.Service.EncryptConfiguration
     using ApiAuthorizationAA.Model.Entities.EncryptConfiguration;
     using System.Threading.Tasks;
 
-    public interface IControlEncryptService
+    public interface IControlEncryptPersistence
     {
         /// <summary>
         /// Insert new configuration to encrypt 

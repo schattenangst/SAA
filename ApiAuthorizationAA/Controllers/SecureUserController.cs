@@ -1,9 +1,9 @@
 ﻿
 namespace ApiAuthorizationAA.Controllers
 {
-    using ApiAuthorizationAA.Common.Dto;
-    using ApiAuthorizationAA.Model.Entities.User;
-    using ApiAuthorizationAA.Service.SecureUser;
+    using Common.Dto;
+    using Model.Entities.User;
+    using Service.SecureUser;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;

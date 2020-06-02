@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cnbv.Sait.Cryptography, Version=4.0.12.0, Culture=neutral, PublicKeyToken=51d456dd8a5ff4be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\CNBV\DevFrameWork\4.0.12\Cnbv.Sait.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,8 +47,14 @@
   <ItemGroup>
     <Compile Include="Dto\ResponseDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\CommonResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Enums.cs" />
     <Compile Include="Security\EncryptHashProvider.cs" />
+    <Compile Include="Security\ExternalCryptography.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
@@ -54,6 +64,12 @@
       <Project>{742cd37f-936a-4337-b40f-933a80d919d0}</Project>
       <Name>ApiAuthorizationAA.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CommonResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

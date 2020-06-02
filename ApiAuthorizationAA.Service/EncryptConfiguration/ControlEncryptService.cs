@@ -8,13 +8,13 @@ namespace ApiAuthorizationAA.Service.EncryptConfiguration
     using System;
     using System.Threading.Tasks;
 
-    public class ControlEncryptService : IControlEncryptService
+    public class ControlEncryptService : IControlEncryptPersistence
     {
         #region Fields
         /// <summary>
         /// 
         /// </summary>
-        private readonly IControlEncryptPersistence controlEncryptPersistence;
+        private readonly Persistence.EncryptConfiguration.IControlEncryptPersistence controlEncryptPersistence;
         #endregion
 
         #region Constructor
@@ -22,7 +22,7 @@ namespace ApiAuthorizationAA.Service.EncryptConfiguration
         /// Constructor by <see cref="ControlEncryptService"/>
         /// </summary>
         /// <param name="controlEncryptPersistence"></param>
-        public ControlEncryptService(IControlEncryptPersistence controlEncryptPersistence)
+        public ControlEncryptService(Persistence.EncryptConfiguration.IControlEncryptPersistence controlEncryptPersistence)
         {
             this.controlEncryptPersistence = controlEncryptPersistence;
         }

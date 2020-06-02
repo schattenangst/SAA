@@ -20,7 +20,7 @@ namespace ApiAuthorizationAA.Controllers
         /// <summary>
         /// 
         /// </summary>
-        private readonly IControlEncryptService controlEncryptService;
+        private readonly IControlEncryptPersistence controlEncryptService;
         #endregion
 
         #region Constructor
@@ -28,7 +28,7 @@ namespace ApiAuthorizationAA.Controllers
         /// Constructor controller
         /// </summary>
         /// <param name="controlEncryptService"></param>
-        public ConfigurationEncryptController(IControlEncryptService controlEncryptService)
+        public ConfigurationEncryptController(IControlEncryptPersistence controlEncryptService)
         {
             this.controlEncryptService = controlEncryptService;
         }

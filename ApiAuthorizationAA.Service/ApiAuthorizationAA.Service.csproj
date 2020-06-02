@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cnbv.Sait.Cryptography, Version=4.0.12.0, Culture=neutral, PublicKeyToken=51d456dd8a5ff4be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\CNBV\DevFrameWork\4.0.12\Cnbv.Sait.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,14 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cryptography\SHA\IEncryptShaServices.cs" />
-    <Compile Include="Cryptography\SHA\DecryptShaServices.cs" />
-    <Compile Include="Cryptography\SHA\EncryptShaServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EncryptConfiguration\ControlEncryptService.cs" />
-    <Compile Include="SecureUser\EncryptHashService.cs" />
+    <Compile Include="SecureUser\UserAuthenticateService.cs" />
     <Compile Include="EncryptConfiguration\IControlEncryptService.cs" />
-    <Compile Include="SecureUser\IEncryptHashService.cs" />
+    <Compile Include="SecureUser\IUserAuthenticateService.cs" />
     <Compile Include="SecureUser\IUserHashService.cs" />
     <Compile Include="SecureUser\UserHashService.cs" />
   </ItemGroup>
@@ -67,7 +68,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="User\" />
+    <Folder Include="Cryptography\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

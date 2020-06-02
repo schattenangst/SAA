@@ -76,7 +76,7 @@ namespace ApiAuthorizationAA.Persistence.EncryptConfiguration
                         if (item.IsActive)
                         {
                             item.IsActive = false;
-                            _ = await Edit(item);
+                            var temp = await Edit(item);
                         }
                     }
                 }
@@ -113,7 +113,7 @@ namespace ApiAuthorizationAA.Persistence.EncryptConfiguration
                 if (result != null)
                 {
                     result.IsActive = false;
-                    _ = await Edit(result);
+                    var temp = await Edit(result);
                     response = new ResponseDto<bool>(true);
                 }
             }

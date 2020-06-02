@@ -1,7 +1,6 @@
 ﻿
 namespace ApiAuthorizationAA.Controllers
 {
-    using ApiAuthorizationAA.Service.Cryptography.SHA;
     using ApiAuthotizationAA.Model.Entities.Cryptography;
     using Model.Entities.User;
     using System;
@@ -11,7 +10,6 @@ namespace ApiAuthorizationAA.Controllers
     public class LoginController : ApiController
     {
         #region Fields
-        private readonly IEncryptShaServices encryptShaServices;
         #endregion
 
         #region Contructor
@@ -20,9 +18,8 @@ namespace ApiAuthorizationAA.Controllers
         /// </summary>
         /// <param name="encryptShaServices"></param>
         /// <param name="userService"></param>
-        public LoginController(IEncryptShaServices encryptShaServices)
+        public LoginController()
         {
-            this.encryptShaServices = encryptShaServices;
         }
         #endregion
 
@@ -31,20 +28,11 @@ namespace ApiAuthorizationAA.Controllers
         [Route("User")]
         public IHttpActionResult GetUser([FromBody]UserEntity user)
         {
-            PasswordHashContainerEntity securePassword = encryptShaServices.CreateHash(user.Password);
 
             UserSecureEntity secureUser = new UserSecureEntity
             {
                 Password = user.Password,
-                PasswordHash = Convert.ToBase64String(securePassword.HashedPassword),
-                Salt = Convert.ToBase64String(securePassword.Salt)
             };
-
-            byte[] encryptPassword = encryptShaServices.CreateHash(user.Password, securePassword.Salt);
-
-            string encryptedPassword = Convert.ToBase64String(encryptPassword);
-
-            secureUser.PasswordHastTemp = encryptedPassword;
 
             return Json(secureUser);
         }
@@ -53,20 +41,20 @@ namespace ApiAuthorizationAA.Controllers
         [Route("UserEncrypt/{userName}/{password}")]
         public IHttpActionResult GetUserParams(string userName, string password)
         {
-            PasswordHashContainerEntity securePassword = encryptShaServices.CreateHash(password);
+            //PasswordHashContainerEntity securePassword = encryptShaServices.CreateHash(password);
 
             UserSecureEntity secureUser = new UserSecureEntity
             {
                 Password = password,
-                PasswordHash = Convert.ToBase64String(securePassword.HashedPassword),
-                Salt = Convert.ToBase64String(securePassword.Salt)
+                //PasswordHash = Convert.ToBase64String(securePassword.HashedPassword),
+                //Salt = Convert.ToBase64String(securePassword.Salt)
             };
 
-            byte[] encryptPassword = encryptShaServices.CreateHash(password, securePassword.Salt);
+            //byte[] encryptPassword = encryptShaServices.CreateHash(password, securePassword.Salt);
 
-            string encryptedPassword = Convert.ToBase64String(encryptPassword);
+            //string encryptedPassword = Convert.ToBase64String(encryptPassword);
 
-            secureUser.PasswordHastTemp = encryptedPassword;
+            //secureUser.PasswordHastTemp = encryptedPassword;
 
             return Json(secureUser);
         }

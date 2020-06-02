@@ -9,6 +9,7 @@ namespace ApiAuthorizationAA.Service.SecureUser
     using ApiAuthorizationAA.Persistence.EncryptConfiguration;
     using ApiAuthorizationAA.Persistence.SecureUser;
     using ApiAuthotizationAA.Model.Entities.Cryptography;
+    using Cnbv.Sait.Cryptography;
     using System;
     using System.Threading.Tasks;
 

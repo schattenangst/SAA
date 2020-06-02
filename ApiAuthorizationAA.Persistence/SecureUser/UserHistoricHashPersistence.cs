@@ -56,9 +56,36 @@ namespace ApiAuthorizationAA.Persistence.SecureUser
 
             return response;
         }
+
+        /// <summary>
+        /// Get last 5 records by idSiaraWebUser
+        /// </summary>
+        /// <param name="idSiaraWebUser"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<ResponseDto<ICollection<SiaraHistoricHash>>> GetUserHistoricHashAsync(string idSiaraWebUser, int pageSize)
+        {
+            ResponseDto<ICollection<SiaraHistoricHash>> response = null;
+
+            try
+            {
+                ICollection<SiaraHistoricHash> result = (await FindAllAsync(x => x.IdSiaraWebUser == idSiaraWebUser))
+                                                                           .OrderByDescending(x => x.IdSiaraHistoricHash)
+                                                                           .Take(pageSize)
+                                                                           .ToList();
+            }
+            catch (System.Exception ex)
+            {
+                response = new ResponseDto<ICollection<SiaraHistoricHash>>($"Ocurrió un error al obtener historico de contraseñas para el usuario {idSiaraWebUser}", ex);
+            }
+
+            return response;
+        }
+
         #endregion
 
         #region Private Methods
+
         /// <summary>
         /// 
         /// </summary>
@@ -79,7 +106,7 @@ namespace ApiAuthorizationAA.Persistence.SecureUser
                         if (item.IsActive)
                         {
                             item.IsActive = false;
-                            _ = await Edit(item);
+                            var temp = await Edit(item);
                         }
                     }
                 }
